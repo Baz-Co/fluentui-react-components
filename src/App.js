@@ -1,3 +1,7 @@
+import { Button } from './Components';
+
+import { APIView } from "./Views";
+
 import logo from './logo.svg';
 import './App.css';
 
@@ -17,7 +21,14 @@ function App() {
         >
           Learn React
         </a>
+        <Button appearance='primary' style={{ color: 'blue' }}>
+          Test
+        </Button>
+        <Button appearance='secondary'>
+          Test
+        </Button>
       </header>
+      <APIView />
     </div>
   );
 }
