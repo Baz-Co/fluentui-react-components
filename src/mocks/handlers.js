@@ -34,4 +34,15 @@ export const handlers = [
       }),
     )
   }),
+
+  rest.get('/userGroup', (req, res, ctx) => {
+    // If authenticated, return a mocked user details
+    return res(
+      ctx.status(200),
+      ctx.json([
+        { first: 'Shehbaz', last: 'Sherwani' },
+        { first: 'Shiraz', last: 'Sherwani' },
+      ]),
+    )
+  }),
 ]
