@@ -1,34 +1,46 @@
-import { Button } from './Components';
+import { useState } from 'react';
+import { FluentProvider } from '@fluentui/react-components';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
-import { APIView } from "./Views";
+import { customDarkTheme, customLightTheme } from './customFluentTheme';
+import { Header } from "./Views";
+import { Navigation } from "./Views";
+import { About } from "./Views";
+import { Settings } from "./Views";
+import { Activity } from "./Views"
+import { Chat } from "./Views"
+import { Meet } from "./Views"
+import { Calendar } from "./Views"
 
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const [customUserTheme, setCustomUserTheme] = useState('dark');
+  const [siteNavigationOrientation, setSiteNavigationOrientation] = useState('vertical');
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <Button appearance='primary' style={{ color: 'blue' }}>
-          Test
-        </Button>
-        <Button appearance='secondary'>
-          Test
-        </Button>
-      </header>
-      <APIView />
+      <FluentProvider theme={customUserTheme === 'dark' ? customDarkTheme : customLightTheme}>
+        <BrowserRouter>
+          <Header />
+          <Navigation orientation={siteNavigationOrientation === 'vertical' ? 'vertical' : 'horizontal'} />
+          <Routes>
+            <Route index element={<About />} />
+            <Route path="/Settings" element={
+              <Settings 
+                customUserTheme={customUserTheme} 
+                setCustomUserTheme={setCustomUserTheme}
+                siteNavigationOrientation={siteNavigationOrientation}
+                setSiteNavigationOrientation={setSiteNavigationOrientation}
+              />}
+            />
+            <Route path="/Activity" element={<Activity />} />
+            <Route path="/Chat" element={<Chat />} />
+            <Route path="/Meet" element={<Meet />} />
+            <Route path="/Calendar" element={<Calendar />} />
+          </Routes>
+        </BrowserRouter>
+      </FluentProvider>
     </div>
   );
 }
