@@ -1,9 +1,9 @@
-import { Menu, MenuTrigger, MenuButton, MenuPopover, MenuList, MenuItem, Divider, LargeTitle, Title1 } from "@fluentui/react-components";
+import { useState } from "react";
+import { Menu, MenuTrigger, MenuButton, MenuPopover, MenuList, MenuItem, MenuItemRadio, LargeTitle, Title1, Accordion, AccordionItem, AccordionHeader, AccordionPanel } from "@fluentui/react-components";
 
 const Theme = ({ customUserTheme, setCustomUserTheme }) => {
   return (
     <>
-      <Title1 block>Theme</Title1>
       <Menu>
         <MenuTrigger disableButtonEnhancement>
           <MenuButton>Theme: {customUserTheme}</MenuButton>
@@ -21,18 +21,23 @@ const Theme = ({ customUserTheme, setCustomUserTheme }) => {
 }
 
 const SiteNavigation = ({ siteNavigationOrientation, setSiteNavigationOrientation }) => {
+  const [checkedValues, setCheckedValues] = useState({ navigation: [`${siteNavigationOrientation}`] });
+  const onChange = (e, { name, checkedItems }) => {
+    setCheckedValues(s => ({ ...s, [name]: checkedItems }));
+    setSiteNavigationOrientation(checkedItems[0]);
+  };
+
   return (
     <>
-      <Title1 block>Site Navigation</Title1>
-      <Menu>
+      <Menu checkedValues={checkedValues} onCheckedValueChange={onChange}>
         <MenuTrigger disableButtonEnhancement>
           <MenuButton>Orientation: {siteNavigationOrientation}</MenuButton>
         </MenuTrigger>
 
         <MenuPopover>
           <MenuList>
-            <MenuItem onClick={() => setSiteNavigationOrientation('vertical')}>vertical</MenuItem>
-            <MenuItem onClick={() => setSiteNavigationOrientation('horizontal')}>horizontal</MenuItem>
+            <MenuItemRadio name="navigation" value="vertical">vertical</MenuItemRadio>
+            <MenuItemRadio name="navigation" value="horizontal">horizontal</MenuItemRadio>
           </MenuList>
         </MenuPopover>
       </Menu>
@@ -43,11 +48,22 @@ const SiteNavigation = ({ siteNavigationOrientation, setSiteNavigationOrientatio
 export function Settings({ customUserTheme, setCustomUserTheme, siteNavigationOrientation, setSiteNavigationOrientation }) {
   return (
     <div style={{ height: '100vh' }}>
-      <LargeTitle>Settings</LargeTitle>
-      <Divider style={{ display: 'inline' }} />
-      <Theme customUserTheme={customUserTheme} setCustomUserTheme={setCustomUserTheme} />
-      <Divider style={{ display: 'inline' }} />
-      <SiteNavigation siteNavigationOrientation={siteNavigationOrientation} setSiteNavigationOrientation={setSiteNavigationOrientation} />
+      <LargeTitle block>Settings</LargeTitle>
+
+      <Accordion style={{ display: 'inline-block' }} multiple collapsible defaultOpenItems="theme">
+        <AccordionItem value="theme">
+          <AccordionHeader><Title1 block>Theme</Title1></AccordionHeader>
+          <AccordionPanel>
+            <Theme customUserTheme={customUserTheme} setCustomUserTheme={setCustomUserTheme} />
+          </AccordionPanel>
+        </AccordionItem>
+        <AccordionItem value="navigation">
+          <AccordionHeader><Title1 block>Site Navigation</Title1></AccordionHeader>
+          <AccordionPanel>
+            <SiteNavigation siteNavigationOrientation={siteNavigationOrientation} setSiteNavigationOrientation={setSiteNavigationOrientation} />
+          </AccordionPanel>
+        </AccordionItem>
+      </Accordion>
     </div>
   )
 }
