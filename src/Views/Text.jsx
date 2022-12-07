@@ -16,7 +16,7 @@ import {
 export function Text() {
   return (
     <div style={{ display: 'flex', justifyContent: 'center', width: '100%', height: '100vh' }}>
-      <div>
+      <article>
         {/* // <div style={{ textAlign: 'left ', height: '100vh' }}> */}
         <Display block>Text</Display>
         <Body1 block>The largest text component in the "@fluentui/react-components" is the 'Display' component.</Body1>
@@ -56,7 +56,7 @@ export function Text() {
           <MSText block truncate wrap={false}>And sometime it might be useful to truncate a text component; And sometime it might be useful to truncate a text component;</MSText>
         </div>
         <Divider />
-      </div>
+      </article>
     </div>
   )
 }
