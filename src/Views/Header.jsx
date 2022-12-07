@@ -7,12 +7,13 @@ import { Button } from "../Components";
 import './Header.css'
 
 
-export function Header() {
+export function Header({ customUserTheme }) {
+  //TODO: Image from msfluent
   return (
     <header className='header'>
       <Link to='/'>
         <Button appearance="transparent" style={{ marginLeft: '4px' }} icon={
-          <img src={`${process.env.PUBLIC_URL}/fluent-ui-logo-white.png`} alt="Microsoft Fluent UI Logo" style={{ maxHeight: '28px' }} />}
+          <img src={`${process.env.PUBLIC_URL}/${customUserTheme==='dark'?'fluent-ui-logo-white':'fluent-ui-logo'}.png`} alt="Microsoft Fluent UI Logo" style={{ maxHeight: '28px' }} />}
         />
       </Link>
       {/* <p>Search</p> */}
