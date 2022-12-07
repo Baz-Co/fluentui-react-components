@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
-import { Tooltip } from "@fluentui/react-components";
-import { ServiceBellRegular, ChatRegular, CameraRegular, CalendarRtlRegular, TextT24Regular, SettingsRegular } from "@fluentui/react-icons";
+import { Tooltip, Divider } from "@fluentui/react-components";
+import { ServiceBellRegular, ChatRegular, CameraRegular, CalendarRtlRegular, TextT24Regular, SettingsRegular, TimerRegular } from "@fluentui/react-icons";
 // import { BellIcon, ChatIcon, VideoCameraEmphasisIcon, CalendarIcon } from "@fluentui/react-icons-northstar";
 
 import { Button } from "../Components";
@@ -25,6 +25,10 @@ export function Navigation({ orientation = "horizontal" }) {
       <Tooltip relationship="label" content={"Text"} appearance="inverted">
         <NavLink to='/Text'><Button appearance="transparent" size="large" icon={<TextT24Regular />} /></NavLink>
       </Tooltip>
+      <Tooltip relationship="label" content={"Performance"} appearance="inverted">
+        <NavLink to='/Performance'><Button appearance="transparent" size="large" icon={<TimerRegular />} /></NavLink>
+      </Tooltip>
+      <Divider vertical={orientation==='vertical'?false:true} style={{ flexGrow: 0 }}/>
       <Tooltip relationship="label" content={"Settings"} appearance="inverted">
         <NavLink to='/Settings'><Button appearance="transparent" size="large" icon={<SettingsRegular />} /></NavLink>
       </Tooltip>

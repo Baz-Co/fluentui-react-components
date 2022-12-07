@@ -12,7 +12,8 @@ import {
   Chat,
   Meet,
   Calendar,
-  Text
+  Text,
+  Performance
 } from "./Views";
 
 import './App.css';
@@ -43,6 +44,7 @@ function App() {
               <Route path="/Meet" element={<Meet />} />
               <Route path="/Calendar" element={<Calendar />} />
               <Route path="/Text" element={<Text />} />
+              <Route path="/Performance" element={<Performance />} />
             </Routes>
           </div>
         </BrowserRouter>
