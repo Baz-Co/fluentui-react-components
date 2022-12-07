@@ -7,6 +7,7 @@ export { Activity } from "./Activity"
 export { Chat } from "./Chat"
 export { Meet } from "./Meet"
 export { Calendar } from "./Calendar"
+export { Text } from "./Text"
 
 export { APIView } from "./APIView"
 export { UserLogin } from "./UserLogin"
